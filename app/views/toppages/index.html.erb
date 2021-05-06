@@ -1,7 +1,15 @@
 <%= render "layouts/jumbotron" %>
 
-<div class="container">
-  <h3 class="text-center">人気のレビュー</h3>
-</div>
+<% if logged_in? %>
+  <div class="container">
+    <h3 class="text-center">タイムライン</h3>
+  </div>
+  
+<% else %>
+  <div class="container">
+    <h3 class="text-center">人気のレビュー</h3>
+  </div>
+
+<% end %>
 
 <%= link_to 'View users', users_path %>
