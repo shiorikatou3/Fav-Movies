@@ -1,0 +1,22 @@
+<% if users.any? %>
+  <div class="container">
+    <ul class="list-unstyled style="width:500px">
+      <% users.each do |user| %>
+        <li class="media">
+          <img class="mr-2 rounded" src="64x564.gif" alt="64x64">
+          <div class="media-body">
+            <div>
+               <%= user.name %>@<%= user.favmoviesid %>
+            </div>
+            <div class="small">
+              <%= user.introduce %>
+            </div>
+            <%= link_to 'View profile', user_path(user) %>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+  <%= paginate users %>
+<% end %>
+

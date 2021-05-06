@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="media" style="width: 1000px;">
+    <img class="mr-2 rounded" src="64x564.gif" alt="80x80">
+    <div class="media-body">
+      <h5></h5><%= @user.name %>@<%= @user.favmoviesid %></h5>
+      <h6><%= @user.gender %> <%= @user.age %></h6>
+      <p><%= @user.introduce %></p>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <%= render "usersbar" %>
+</div>
