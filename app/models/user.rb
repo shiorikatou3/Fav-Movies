@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  mount_uploader :image, ImageUploader
+  
   validates :name, presence: true, length: { maximum: 50 }
   validates :favmoviesid, presence: true, length: { maximum: 50 },
                           format: { with: /\A[a-zA-Z0-9]+\z/ },
@@ -8,4 +10,7 @@ class User < ApplicationRecord
                     uniqueness: { case_sensitive: false }
   validates :introduce, length: { maximum: 500 }
   has_secure_password
+  
+  
+  
 end

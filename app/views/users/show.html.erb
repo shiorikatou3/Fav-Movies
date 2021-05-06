@@ -1,6 +1,14 @@
 <div class="container">
   <div class="media" style="width: 1000px;">
-    <img class="mr-2 rounded" src="64x564.gif" alt="80x80">
+    <div class="media-left media-top">
+      <div class="mr-2 rounded media-object">
+        <% if @user.image? %>                                                              
+          <%= image_tag @user.image.url, size: "100x100", alt: "100x100" %>
+        <% else %>
+          80x80
+        <% end %>
+      </div>
+    </div>
     <div class="media-body">
       <h5></h5><%= @user.name %>@<%= @user.favmoviesid %></h5>
       <h6><%= @user.gender %> <%= @user.age %></h6>
@@ -12,5 +20,3 @@
 <div class="container">
   <%= render "usersbar" %>
 </div>
-
-<%= link_to 'プロフィールを編集する', edit_user_path(@user) %>

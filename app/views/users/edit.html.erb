@@ -4,7 +4,15 @@
 
 <div class="container">
   <div class="media" style="width: 1000px;">
-    <img class="mr-2 rounded" src="64x564.gif" alt="80x80">
+  <!--  <img class="mr-2 rounded" src="64x564.gif" alt="80x80"> -->
+    <div class="media-left media-top">
+      <div class="mr-2 rounded media-object">
+        <% if @user.image? %>                                                              
+          <%= image_tag @user.image.url, size: "100x100", alt: "100x100" %>
+        <% end %>
+      </div>
+      
+    </div>
     <div class="media-body">
       <h5></h5><%= @user.name %>@<%= @user.favmoviesid %></h5>
     </div>
@@ -54,6 +62,9 @@
           <%= f.label :age, "年齢", class: "control-label" %>
           <%= f.select :age, [["",""], ["10代","10"], ["20代","20"], ["30代","30"], ["40代","40"], ["50代","50"], ["60代","60"], ["70代以上","70"] ], {},   class: "form-control" %>
         </div>
+        
+        <%= f.label "画像をアップロード" %><br><%= f.file_field :image %>
+        
   
         <%= f.submit "変更内容を保存する", class: "btn btn-primary btn-block mt-5" %>
       <% end %>
