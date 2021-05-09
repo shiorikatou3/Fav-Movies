@@ -48,8 +48,10 @@
           <%= f.label :age, "年齢", class: "control-label" %>
           <%= f.select :age, [["",""], ["10代","10"], ["20代","20"], ["30代","30"], ["40代","40"], ["50代","50"], ["60代","60"], ["70代以上","70"] ], {},   class: "form-control" %>
         </div>
+        
+        <%= f.label "画像をアップロード" %><br><%= f.file_field :image %>
   
-        <%= f.submit "Sign up", class: "btn btn-primary btn-block mt-5" %>
+        <%= f.submit "会員登録", class: "btn btn-primary btn-block mt-5" %>
       <% end %>
     </div>
   </div>

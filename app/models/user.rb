@@ -11,6 +11,6 @@ class User < ApplicationRecord
   validates :introduce, length: { maximum: 500 }
   has_secure_password
   
-  
+  has_many :reviews
   
 end

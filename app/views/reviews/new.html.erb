@@ -1,0 +1,65 @@
+<div class="text-center">
+  <h3>お気に入り作品を投稿</h3>
+</div>
+
+<div class="container p-4 mt-4 mb-4">
+  <div class="row">
+    <div class="col-sm-6">
+  
+      <%= form_with(model: @review, local: true) do |f| %>
+        <%= render 'layouts/error_messages', model: f.object %>
+        
+        <div class="form-group">
+          <%= f.label :genre_id, "ジャンル", class: "control-label" %>
+          <%= f.collection_select(:genre_id, @genres, :id, :name, {prompt: "ジャンルを１つだけ選んでください"}, {class: "form-control"}) %>
+        </div>
+        
+        <div class="form-group">
+          <%= f.label :movietitle, "作品タイトル" %>
+          <%= f.text_field :movietitle, class: "form-control" %>
+        </div>
+        
+        <div class="form-group">
+          <%= f.label :caption, "レビュータイトル" %>
+          <%= f.text_field :caption, class: "form-control" %>
+        </div>
+  
+        <div class="form-group">
+          <%= f.label :content, "レビュー内容" %>
+          <%= f.text_area :content, :size=>"300×300", class: "form-control", value: "お気に入りポイント、このジャンルで選んだ理由など" %>
+        </div>
+        
+        <%= f.label "画像を登録" %><br><%= f.file_field :image %>
+  
+        <div class="form-group">
+          <%= f.label :date, "公開日", class: "control-label" %>
+          <%= f.date_field :date, class: "form-control" %>
+        </div>
+  
+        <div class="form-group">
+          <%= f.label :country, "製作国", class: "control-label" %>
+          <%= f.text_field :country, class: "form-control" %>
+        </div>
+        
+        
+        <div class="form-group">
+          <%= f.label :time, "上映時間" %>
+          <%= f.text_field :time, class: "form-control" %>
+        </div>
+        
+        <div class="form-group">
+          <%= f.label :director, "監督" %>
+          <%= f.text_field :director, class: "form-control" %>
+        </div>
+        
+        <div class="form-group">
+          <%= f.label :cast, "キャスト" %>
+          <%= f.text_area :cast, :size=>"300×50", class: "form-control", value: "複数名の場合は箇条書きで記入してください" %>
+        </div>
+        
+  
+        <%= f.submit "投稿", class: "btn btn-primary btn-block mt-5" %>
+      <% end %>
+    </div>
+  </div>
+</div>
