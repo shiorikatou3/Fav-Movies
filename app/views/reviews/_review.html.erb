@@ -18,7 +18,7 @@
                   </div>
                 </div>
                 <div class="media-body">
-                  <p><%= review.user.name %>@<%= review.user.favmoviesid %></br>
+                  <p><%= link_to review.user.name, user_path(review.user) %>@<%= review.user.favmoviesid %></br>
                   <small class="text-muted"><%= review.updated_at.strftime("%Y-%m-%d") %></small></p>
                 </div>
               </div>
@@ -40,8 +40,8 @@
           </div>
         </div>
         <ul class="list-group list-group-flush">
-          <li class="list-group-item small">♡件のいいね！</li>
-          <li class="list-group-item small">件のコメント</li>
+          <li class="list-group-item small"><%= render "favorites/favorite_button", review: review %></li>
+          <li class="list-group-item small">コメント</li>
         </ul>
       </div>
     </div>

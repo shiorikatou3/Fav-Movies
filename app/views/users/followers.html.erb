@@ -1,21 +1,52 @@
-<div class="container">
-  <div class="media" style="width: 1000px;">
-    <div class="media-left media-top">
-      <div class="mr-2 rounded media-object">
-        <% if @user.image? %>                                                              
-          <%= image_tag @user.image.url, size: "100x100" %>
-        <% else %>
-          100x100
-        <% end %>
+<div class="card border border-0 mx-auto" style="width: 1000px;">
+  <div class="d-flex justify-content-center">
+    <div class="card border border-0" style="width: 700px;">
+      <div class="card-body">
+        <div class="media">
+          <div class="media-left media-top">
+            <div class="mr-2 rounded media-object">
+              <% if @user.image? %>                                                              
+                <%= image_tag @user.image.url, size: "100x100" %>
+              <% else %>
+                100x100
+              <% end %>
+            </div>
+          </div>
+          <div class="media-body">
+            <p><%= @user.name %>@<%= @user.favmoviesid %></br>
+              <small class="text-muted"><%= @user.gender %>&ensp;<%= @user.age %>
+              <% unless @user.age.nil? %>
+              代
+              <% end %>
+              </small>
+            </p>
+            <p><%= @user.introduce %></P>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="media-body">
-      <h5></h5><%= @user.name %>@<%= @user.favmoviesid %></h5>
-      <h6><%= @user.gender %> <%= @user.age %></h6>
-      <p><%= @user.introduce %></p>
+    <div class="card border border-0" style="width: 300px;">
+      <div class="card-body">
+        <div class="card-text text-right">
+          <% if logged_in? %>                                                              
+            <%= render "relationships/follow_button", user: @user %>
+          <% end %>
+        </div>
+        <div class="card-text text-right">
+          <% if current_user == @user %>
+            <div class="d-inline-flex">
+              <%= link_to "プロフィール編集", edit_user_path(current_user), class: 'btn btn-outline-secondary' %>
+              <%= link_to "投稿する", new_review_path, class: 'btn btn-outline-secondary' %>
+            </div>
+          <% end %>
+        </div>
+      </div>
     </div>
   </div>
 </div>
+  
+<div class="mb-5">  
+  <%= render "usersbar" %>
+</div>
 
-<%= render "usersbar" %>
 <%= render 'users', users: @followers %>
