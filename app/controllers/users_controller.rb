@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  before_action :require_user_logged_in, only: [:edit, :update]
+  before_action :require_user_logged_in, only: [:edit, :update, :followings, :followers]
+  before_action :parent
   
   
   def index
@@ -8,6 +9,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @reviews = @user.reviews.order(id: :desc).page(params[:page]).per(10)
+    counts(@user)
   end
 
   def new
@@ -30,10 +33,6 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-=begin 
-if current_user == @user
-=end
-
   def update
     @user = User.find(params[:id])
     
@@ -45,6 +44,21 @@ if current_user == @user
       render :edit
     end
   end
+  
+  def followings
+    @user = User.find(params[:id])
+    @followings = @user.followings.page(params[:page])
+    counts(@user)
+  end
+  
+  def followers
+    @user = User.find(params[:id])
+    @followers = @user.followers.page(params[:page])
+    counts(@user)
+  end
+  
+  
+  
 
   private
   

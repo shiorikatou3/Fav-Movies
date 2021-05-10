@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="row">
+    <% reviews.each do |review| %>
+    <div class="col-xl-6">
+      <div class="card" style="width: 500px;">
+        <h6 class="card-title text-center mt-3">「<%= review.genre.name =%>」の映画</h6>
+        <div class="d-flex justify-content-center">
+          <div class="card border border-0" style="width: 350px;">
+            <div class="card-body">
+              <div class="media">
+                <div class="media-left media-top">
+                  <div class="mr-2 rounded media-object">
+                    <% if review.user.image? %>                                                              
+                      <%= image_tag review.user.image.url, size: "80x80" %>
+                    <% else %>
+                      80x80
+                    <% end %>
+                  </div>
+                </div>
+                <div class="media-body">
+                  <p><%= review.user.name %>@<%= review.user.favmoviesid %></br>
+                  <small class="text-muted"><%= review.updated_at.strftime("%Y-%m-%d") %></small></p>
+                </div>
+              </div>
+              <h6 class="card-text"><%= link_to review.caption, review_path(review) %></h6>
+              <p class="card-text"><%= review.content %></p>
+            </div>
+          </div>
+          <div class="card border border-0" style="width: 150px;">
+            <div class="card-body">
+              <div class="card-text" style="width: 106px; height: 150px;" >
+                <% if review.image? %>                                                              
+                  <%= image_tag review.image.url, size: "106x150" %>
+                <% else %>
+                  作品画像
+                <% end %>
+              </div>
+              <div class="card-text"><%= review.movietitle %></div>
+            </div>
+          </div>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item small">♡件のいいね！</li>
+          <li class="list-group-item small">件のコメント</li>
+        </ul>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>
+

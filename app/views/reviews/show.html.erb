@@ -1,6 +1,6 @@
 <%= render "layouts/jumbotron" %>
-<div class="container">
-  <h3 class="text-center mb-4">『<%= @review.caption %>』<%= @review.user.name %>さんのレビュー</h3>
+<div class="container mt-4 mb-4">
+  <h4 class="text-center">『<%= @review.caption %>』<%= @review.user.name %>さんのレビュー</h4>
 </div>
 
 
@@ -33,7 +33,7 @@
         <div class="card-body">
           <div class="card-text" style="width: 149px; height: 210px;" >
             <% if @review.image? %>                                                              
-              <%= image_tag @review.image.url %>
+              <%= image_tag @review.image.url, size: "149x210" %>
             <% else %>
               作品画像
             <% end %>

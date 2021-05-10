@@ -18,19 +18,4 @@
 </div>
 
 <%= render "usersbar" %>
-
-
-<%= render "usergenrebar" %>
-
-
-<%= render "reviews/review", reviews: @reviews %>
-
-
-
-
-
-<%= link_to "投稿する", new_review_path %>
-
-<% if logged_in? %>
-  <%= render "relationships/follow_button", user: @user %>              
-<% end %>
+<%= render 'users', users: @followers %>

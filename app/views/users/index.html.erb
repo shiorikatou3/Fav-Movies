@@ -1,1 +1,34 @@
-<%= render 'users', users: @users %>
+<% if @users.any? %>
+
+<div class="container">
+  <div class="row">
+    <% @users.each do |user| %>
+    <div class="col-lg-4">
+      <div class="card" style="width: 300px;">
+        <div class="card-body">
+        
+          <div class="media">
+            <div class="media-left media-top">
+              <div class="mr-2 rounded media-object">
+                <% if user.image? %>                                                              
+                  <%= image_tag user.image.url, size: "80x80" %>
+                <% else %>
+                  80x80
+                <% end %>
+              </div>
+            </div>
+            <div class="media-body">
+              <p><%= link_to user.name, user_path(user) %>@<%= user.favmoviesid %></br>
+                <small class="text-muted"><%= user.gender %><%= user.age %>代</small></p>
+              <p><%= user.introduce %></P>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>
+
+<%= paginate @users %>
+<% end %>

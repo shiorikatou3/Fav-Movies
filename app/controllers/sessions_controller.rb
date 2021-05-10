@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  before_action :parent
+  
   def new
   end
 

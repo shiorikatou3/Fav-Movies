@@ -1,6 +1,7 @@
 class ReviewsController < ApplicationController
   before_action :require_user_logged_in, only: [:new, :create, :edit, :update, :destroy]
   before_action :correct_user, only: [:destroy]
+  before_action :parent
   
   def show
     @review = Review.find(params[:id])
@@ -8,7 +9,7 @@ class ReviewsController < ApplicationController
 
   def new
     @review = current_user.reviews.build
-    @genres = Genre.where.not(ancestry: nil)
+    @children = Genre.where.not(ancestry: nil)
   end
 
   def create
@@ -39,7 +40,7 @@ class ReviewsController < ApplicationController
 
   def destroy
     @review.destroy
-    redirect_to user_url
+    redirect_to user_url(@review.user)
   end
   
   private
@@ -49,9 +50,9 @@ class ReviewsController < ApplicationController
   end
   
   def correct_user
-    @reiew = current_user.reviews.find_by(id: params[:id])
+    @review = current_user.reviews.find_by(id: params[:id])
     unless @review
-      redirect_to user_url
+      redirect_to root_url
     end
   end
   

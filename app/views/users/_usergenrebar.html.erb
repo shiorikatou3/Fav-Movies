@@ -1,4 +1,4 @@
-<genre class="mt-4">
+<genre class="mt-4 mb-4">
   <nav class="navbar navbar-expand-sm navbar-light" style="background-color:#fff5ee;">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
       <span class="navbar-toggler-icon"></span>
@@ -11,7 +11,7 @@
             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><%= parent.name %></a>
             <ul class="dropdown-menu dropdown-menu-right">
               <% parent.children.each do |child| %>
-                <li class="dropdown-item small"><%= link_to child.name, genre_path(child) %></li>
+                <li class="dropdown-item small"><%= link_to child.name, user_genre_path(child) %></li>
               <% end %>
             </ul>
           </li>
