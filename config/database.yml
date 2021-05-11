@@ -49,6 +49,9 @@ test:
 #
 production:
   <<: *default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
   database: favmovies_production
   username: favmovies
   password: <%= ENV['FAVMOVIES_DATABASE_PASSWORD'] %>

@@ -7,5 +7,6 @@ class Review < ApplicationRecord
   validates :movietitle, presence: true, length: { maximum: 50 }
   validates :caption, length: { maximum: 50 }
   
+  has_many :comments
   
 end

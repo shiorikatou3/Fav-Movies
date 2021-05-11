@@ -44,7 +44,17 @@
     </div>
     <ul class="list-group list-group-flush">
       <li class="list-group-item"><%= render "favorites/favorite_button", review: @review %></li>
-      <li class="list-group-item">コメント件</li>
+      <li class="list-group-item">コメント</li>
+      <li class="list-group-item">
+        <div class="comment-form">
+          <%= form_with(model: @comment, url: review_comments_path(@review), local: true) do |f| %>
+            <div class="field">
+              <%= f.text_area :content %>
+            </div>
+              <%= f.submit "コメントする", class: "btn btn-primary" %>
+          <% end %>
+        </div>
+      </li>
     </ul>
   </div>
   
@@ -72,3 +82,11 @@
 
 
 
+
+<div>
+  <% @review.comments.each do |comment| %>
+    <p>
+      <%= comment.content %>
+    </p>
+  <% end %>  
+</div>
