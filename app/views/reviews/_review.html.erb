@@ -10,11 +10,7 @@
               <div class="media">
                 <div class="media-left media-top">
                   <div class="mr-2 rounded media-object">
-                    <% if review.user.image? %>                                                              
-                      <%= image_tag review.user.image.url, size: "80x80" %>
-                    <% else %>
-                      80x80
-                    <% end %>
+                    <%= image_tag review.user.image.icon.url, size: "40x40" %>
                   </div>
                 </div>
                 <div class="media-body">
@@ -29,11 +25,7 @@
           <div class="card border border-0" style="width: 150px;">
             <div class="card-body">
               <div class="card-text" style="width: 106px; height: 150px;" >
-                <% if review.image? %>                                                              
-                  <%= image_tag review.image.url, size: "106x150" %>
-                <% else %>
-                  作品画像
-                <% end %>
+                <%= image_tag review.image.movie.url, size: "106x150" %>
               </div>
               <div class="card-text"><%= review.movietitle %></div>
             </div>

@@ -13,11 +13,7 @@
           <div class="media">
             <div class="media-left media-top">
               <div class="mr-2 rounded media-object">
-                <% if @review.user.image? %>                                                              
-                  <%= image_tag @review.user.image.url, size: "100x100" %>
-                <% else %>
-                  100x100
-                <% end %>
+                <%= image_tag @review.user.image.icon.url, size: "45x45" %>
               </div>
             </div>
             <div class="media-body">
@@ -32,11 +28,7 @@
       <div class="card border border-0" style="width: 200px;">
         <div class="card-body">
           <div class="card-text" style="width: 149px; height: 210px;" >
-            <% if @review.image? %>                                                              
-              <%= image_tag @review.image.url, size: "149x210" %>
-            <% else %>
-              作品画像
-            <% end %>
+            <%= image_tag @review.image.movie.url, size: "149x210" %>
           </div>
           <div class="card-text"><%= @review.movietitle %></div>
         </div>
@@ -54,11 +46,11 @@
   <div class="card" style="width: 300px;">
     <h6 class="card-title text-center mt-3"><%= @review.movietitle =%></h6>
     <div class="card-body">
-      <div class="card-text">公開日：<%= @review.date %></div>
-      <div class="card-text">製作国：<%= @review.country %></div>
-      <div class="card-text">上映時間：<%= @review.time %></div>
-      <div class="card-text">監督：<%= @review.director %></div>
-      <div class="card-text">キャスト：<br><%= @review.cast %></div>
+      <div class="card-text mb-3">公開日：<%= @review.date %></div>
+      <div class="card-text mb-3">製作国：<%= @review.country %></div>
+      <div class="card-text mb-3">上映時間：<%= @review.time %></div>
+      <div class="card-text mb-3">監督：<%= @review.director %></div>
+      <div class="card-text mb-3">キャスト：<br><%= @review.cast %></div>
     </div>
   </div>
 </div>

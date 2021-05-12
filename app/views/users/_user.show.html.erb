@@ -5,11 +5,7 @@
         <div class="media">
           <div class="media-left media-top">
             <div class="mr-2 rounded media-object">
-              <% if user.image? %>                                                              
-                <%= image_tag user.image.url, size: "100x100" %>
-              <% else %>
-                100x100
-              <% end %>
+              <%= image_tag user.image.icon.url, size: "80x80" %>
             </div>
           </div>
           <div class="media-body">

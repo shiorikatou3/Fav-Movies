@@ -2,29 +2,54 @@
   <h3>プロフィール編集</h3>
 </div>
 
-<div class="container">
-  <div class="media" style="width: 1000px;">
-    <div class="media-left media-top">
-      <div class="mr-2 rounded media-object">
-        <% if @user.image? %>                                                              
-          <%= image_tag @user.image.url, size: "100x100" %>
-        <% else %>
-          100x100
-        <% end %>
-      </div>
-      
-    </div>
-    <div class="media-body">
-      <h5></h5><%= @user.name %>@<%= @user.favmoviesid %></h5>
-    </div>
-  </div>
-</div>
-
 <div class="container p-4 mt-4 mb-4">
   <div class="row">
     <div class="col-sm-6 offset-sm-3">
-  
+      
       <%= form_with(model: @user, local: true) do |f| %>
+        <div class="card border border-0 mb-3">
+          <div class="card-body">
+            <div class="media">
+              <div class="media-left">
+                <div class="mr-2 mb-3 rounded media-object">
+                  <% unless @user.image %>
+                    <%= image_tag @user.image.icon.url, size: "100x100" %>
+                  <% else %>
+                    <%= image_tag @user.image.icon.url, size: "100x100", id: :img_prev %>
+                  <% end %>
+                </div>
+              </div>
+              <div class="media-body">
+                <p>@<%= @user.favmoviesid %></p>
+              </div>
+            </div>
+            <div class="card-text">
+              <%= f.file_field :image, id: :user_img %>
+            </div>
+          </div>
+        </div>
+        
+        
+        <script type="text/javascript">
+        $(function() {
+         function readURL(input) {
+           if (input.files && input.files[0]) {
+             var reader = new FileReader();
+             reader.onload = function (e) {
+               $('#img_prev').attr('src', e.target.result);
+             }
+             reader.readAsDataURL(input.files[0]);
+           }
+         }
+         $("#user_img").change(function(){
+           readURL(this);
+         });
+        });
+        </script>
+        
+        
+  
+      
         <%= render "layouts/error_messages", model: f.object %>
         
         <div class="form-group">
@@ -34,7 +59,7 @@
         
         <div class="form-group">
           <%= f.label :introduce, "プロフィール" %>
-          <%= f.text_field :introduce, class: "form-control", value: "500文字以内で入力してください" %>
+          <%= f.text_field :introduce, class: "form-control", placeholder: "500文字以内で入力してください" %>
         </div>
   
         <div class="form-group">
@@ -64,7 +89,7 @@
           <%= f.select :age, [["",""], ["10代","10"], ["20代","20"], ["30代","30"], ["40代","40"], ["50代","50"], ["60代","60"], ["70代以上","70"] ], {},   class: "form-control" %>
         </div>
         
-        <%= f.label "画像をアップロード" %><br><%= f.file_field :image %>
+        
         
   
         <%= f.submit "変更内容を保存する", class: "btn btn-info btn-block mt-5" %>

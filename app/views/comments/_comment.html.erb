@@ -6,11 +6,7 @@
           <div class="media">
             <div class="media-left media-top">
               <div class="mr-2 rounded media-object">
-                <% if comment.user.image? %>                                                              
-                  <%= image_tag comment.user.image.url, size: "50x50" %>
-                <% else %>
-                  50x50
-                <% end %>
+                <%= image_tag comment.user.image.icon.url, size: "35x35" %>
               </div>
             </div>
             <div class="media-body">

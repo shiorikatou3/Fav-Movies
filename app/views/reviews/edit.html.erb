@@ -27,16 +27,34 @@
         <div class="card border border-0" style="width: 200px;">
           <div class="card-body">
             <div class="card-text" style="width: 149px; height: 210px;">
-              <% if @review.image? %>                                                              
-                <%= image_tag @review.image.url, size: "149x210" %>
+              <% unless @review.image %>
+                <%= image_tag @review.image.movie.url, size: "149x210" %>
               <% else %>
-                作品画像
+                <%= image_tag @review.image.movie.url, size: "149x210", id: :img_prev %>
               <% end %>
             </div>
-            <div class="card-text"><%= f.label "画像を登録" %><br><%= f.file_field :image %></div>
+            <div class="card-text"><%= f.file_field :image, id: :review_img %></div>
           </div>
         </div>
       </div>
+      
+      <script type="text/javascript">
+      $(function() {
+       function readURL(input) {
+         if (input.files && input.files[0]) {
+           var reader = new FileReader();
+           reader.onload = function (e) {
+             $('#img_prev').attr('src', e.target.result);
+           }
+           reader.readAsDataURL(input.files[0]);
+         }
+       }
+       $("#review_img").change(function(){
+         readURL(this);
+       });
+      });
+      </script>
+      
       <div class="card-body">
         <div class="form-group">
           <%= f.label :content, "レビュー内容" %>
