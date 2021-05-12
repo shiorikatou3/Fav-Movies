@@ -46,23 +46,7 @@
       <li class="list-group-item"><%= render "favorites/favorite_button", review: @review %></li>
       <li class="list-group-item">コメント</li>
       <li class="list-group-item">
-        <div>
-          <% @review.comments.each do |comment| %>
-            <p>
-              <%= comment.user.name %><%= comment.content %>
-            </p>
-          <% end %>  
-        </div>
-        <div class="comment-form">
-          <%= form_with(model: @comment, url: review_comments_path(@review), local: true) do |f| %>
-            <div class="d-flex justify-content-between">
-              <div style="width: 550px;">
-                <%= f.text_field :content, class: "form-control", placeholder: "コメントする" %>
-              </div>
-              <%= f.submit "送信", class: "btn btn-primary" %>
-            </div>
-          <% end %>
-        </div>
+        <%= render "comments/comment" %>
       </li>
     </ul>
   </div>
@@ -83,7 +67,7 @@
 <% if current_user == @review.user %>
 <div class="container p-0" style="width: 1000px;">
   <div class="d-flex justify-content-between mt-4 mb-4">
-    <%= link_to "レビューを編集", edit_review_path(@review), class: "btn btn-primary" %>
+    <%= link_to "レビューを編集", edit_review_path(@review), class: "btn btn-info" %>
     <%= link_to "x削除", @review, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger' %>
   </div>
 </div>

@@ -18,7 +18,7 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment.destroy
-    redirect_to @review
+    redirect_to review_url(@comment.review)
   end
   
   private

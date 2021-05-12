@@ -23,7 +23,7 @@
                 </div>
               </div>
               <h6 class="card-text"><%= link_to review.caption, review_path(review) %></h6>
-              <p class="card-text"><%= review.content %></p>
+              <p class="card-text"><%= review.content.truncate(50) %>
             </div>
           </div>
           <div class="card border border-0" style="width: 150px;">
@@ -40,12 +40,18 @@
           </div>
         </div>
         <ul class="list-group list-group-flush">
-          <li class="list-group-item small"><%= render "favorites/favorite_button", review: review %></li>
-          <li class="list-group-item small">コメント</li>
+          <li class="list-group-item small d-flex justify-content-left">
+            <% if logged_in? %>
+              <%= render "favorites/favorite_button", review: review %>
+              <%= link_to "コメント#{review.comments.count}", review_path(review), class: "btn btn-outline-secondary btn-sm" %>
+            <% else %>
+              <%= link_to "♡いいね!#{review.liked.count}", login_path, class: "btn btn-outline-secondary btn-sm" %>
+              <%= link_to "コメント#{review.comments.count}", login_path, class: "btn btn-outline-secondary btn-sm" %>
+            <% end %>
+          </li>
         </ul>
       </div>
     </div>
     <% end %>
   </div>
 </div>
-

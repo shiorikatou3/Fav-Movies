@@ -8,5 +8,7 @@ class Review < ApplicationRecord
   validates :caption, length: { maximum: 50 }
   
   has_many :comments
+  has_many :favorites, dependent: :destroy
+  has_many :liked, through: :favorites, source: :user
   
 end
