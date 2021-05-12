@@ -1,11 +1,8 @@
 <%= render "user.show", user: @user %>
   
-<%= render "usersbar" %>
-
-<div class="mb-5">
-  <%= render "usergenrebar" %>
+<div class="mb-5">  
+  <%= render "usersbar" %>
 </div>
 
-
-<%= render "reviews/review", reviews: @reviews %>
+<%= render 'reviews/review', reviews: @reviews %>
 

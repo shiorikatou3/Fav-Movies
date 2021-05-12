@@ -12,7 +12,7 @@ class CommentsController < ApplicationController
       redirect_to @review
     else
       flash.now[:danger] = "コメントに失敗しました"
-      render @review
+      redirect_to @review
     end
   end
 

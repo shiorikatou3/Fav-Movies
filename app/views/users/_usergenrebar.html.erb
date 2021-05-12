@@ -11,7 +11,7 @@
             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><%= parent.name %></a>
             <ul class="dropdown-menu dropdown-menu-right">
               <% parent.children.each do |child| %>
-                <li class="dropdown-item small"><%= link_to child.name, user_genre_path(child) %></li>
+                <li class="dropdown-item small"><%= link_to child.name, user_genre_path(@user, child) %></li>
               <% end %>
             </ul>
           </li>

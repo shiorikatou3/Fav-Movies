@@ -49,16 +49,18 @@
         <div>
           <% @review.comments.each do |comment| %>
             <p>
-              <%= comment.content %>
+              <%= comment.user.name %><%= comment.content %>
             </p>
           <% end %>  
         </div>
         <div class="comment-form">
           <%= form_with(model: @comment, url: review_comments_path(@review), local: true) do |f| %>
-            <div class="field">
-              <%= f.text_area :content %>
+            <div class="d-flex justify-content-between">
+              <div style="width: 550px;">
+                <%= f.text_field :content, class: "form-control", placeholder: "コメントする" %>
+              </div>
+              <%= f.submit "送信", class: "btn btn-primary" %>
             </div>
-              <%= f.submit "コメントする", class: "btn btn-primary" %>
           <% end %>
         </div>
       </li>
