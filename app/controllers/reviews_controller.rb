@@ -14,6 +14,7 @@ class ReviewsController < ApplicationController
 
   def create
     @review = current_user.reviews.build(review_params)
+    @children = Genre.where.not(ancestry: nil)
     
     if @review.save
       redirect_to @review

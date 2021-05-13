@@ -32,13 +32,14 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   # Create different versions of your uploaded files:
   version :movie do
-    process resize_to_limit: [149, 210]
+    process resize_and_pad: [149, 210, "#fff"]
   end
   
   
   version :icon do
-    process resize_to_limit: [100, 100]
+    process resize_and_pad: [100, 100, "#fff"]
   end
+  
 
   # Add an allowlist of extensions which are allowed to be uploaded.
   # For images you might use something like this:

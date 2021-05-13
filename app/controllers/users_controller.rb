@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :require_user_logged_in, only: [:edit, :update, :followings, :followers]
+  before_action :require_user_logged_in, only: [:edit, :update]
   before_action :parent
   
   

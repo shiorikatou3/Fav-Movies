@@ -1,12 +1,12 @@
 <%= render "layouts/jumbotron" %>
-<div class="container mt-4 mb-4">
-  <h4 class="text-center mt-4 mb-5">『<%= @review.caption %>』<%= @review.user.name %>さんのレビュー</h4>
+<div class="container">
+  <h4 class="text-center mt-5 mb-5">『<%= @review.caption %>』<%= @review.user.name %>さんのレビュー</h4>
 </div>
 
 
-<div class="d-flex justify-content-center">  
-  <div class="card" style="width: 700px;">
-    <h6 class="card-title text-center mt-3">「<%= @review.genre.name =%>」の映画</h6>
+<div class="d-flex justify-content-center mb-4 rounded-0">  
+  <div class="card rounded-0" style="width: 700px;">
+    <div class="card-title text-center mt-3 font-weight-bold">「<%= @review.genre.name =%>」の映画</div>
     <div class="d-flex justify-content-center">
       <div class="card border border-0" style="width: 500px;">
         <div class="card-body">
@@ -17,11 +17,11 @@
               </div>
             </div>
             <div class="media-body">
-              <p><%= @review.user.name %>@<%= @review.user.favmoviesid %></br>
+              <p><%= link_to @review.user.name, user_path(@review.user) %>@<%= @review.user.favmoviesid %></br>
               <small class="text-muted"><%= @review.updated_at.strftime("%Y-%m-%d") %></small></p>
             </div>
           </div>
-          <h5 class="card-text"><%= @review.caption %></h5>
+          <h6 class="card-text font-weight-bold mb-3"><%= @review.caption %></h6>
           <p class="card-text"><%= @review.content %></p>
         </div>
       </div>
@@ -30,27 +30,58 @@
           <div class="card-text" style="width: 149px; height: 210px;" >
             <%= image_tag @review.image.movie.url, size: "149x210" %>
           </div>
-          <div class="card-text"><%= @review.movietitle %></div>
+          <div class="card-text mt-2"><%= @review.movietitle %></div>
         </div>
       </div>
     </div>
     <ul class="list-group list-group-flush">
-      <li class="list-group-item"><%= render "favorites/favorite_button", review: @review %></li>
-      <li class="list-group-item">コメント</li>
       <li class="list-group-item">
-        <%= render "comments/comment" %>
+        <% if logged_in? %>
+          <%= render "favorites/favorite_button", review: @review %>
+        <% else %>
+          <%= link_to "♡いいね!#{@review.liked.count}", login_path, class: "btn btn-outline-secondary btn-sm" %>
+        <% end %>
+      </li>
+      <li class="list-group-item small">コメント&ensp;<%= @review.comments.count %></li>
+      <li class="list-group-item">
+        <% if logged_in? %>
+          <%= render "comments/comment" %>
+        <% else %>
+          <div class="comments">
+            <% @review.comments.each do |comment| %>
+              <div class="border-bottom mb-4" style="padding:10px;">
+                <div class="d-flex justify-content-between">
+                  <div class="card border border-0" style="width: 550px;">
+                    <div class="media">
+                      <div class="media-left media-top">
+                        <div class="mr-2 rounded media-object">
+                          <%= image_tag comment.user.image.icon.url, size: "35x35" %>
+                        </div>
+                      </div>
+                      <div class="media-body">
+                        <p><%= link_to comment.user.name, user_path(comment.user) %>@<%= comment.user.favmoviesid %></br>
+                        <small class="text-muted"><%= comment.updated_at.strftime("%Y-%m-%d") %></small></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <%= comment.content %>
+              </div>
+            <% end %>  
+          </div>
+        <% end %>
       </li>
     </ul>
   </div>
   
-  <div class="card" style="width: 300px;">
-    <h6 class="card-title text-center mt-3"><%= @review.movietitle =%></h6>
+  <div class="card rounded-0" style="width: 300px;">
+    <h6 class="card-title text-center mt-3 font-weight-bold"><%= @review.movietitle =%></h6>
     <div class="card-body">
-      <div class="card-text mb-3">公開日：<%= @review.date %></div>
-      <div class="card-text mb-3">製作国：<%= @review.country %></div>
-      <div class="card-text mb-3">上映時間：<%= @review.time %></div>
-      <div class="card-text mb-3">監督：<%= @review.director %></div>
-      <div class="card-text mb-3">キャスト：<br><%= @review.cast %></div>
+      <div class="card-text mb-3"><strong>公開日：</strong><%= @review.date %></div>
+      <div class="card-text mb-3"><strong>製作国：</strong><%= @review.country %></div>
+      <div class="card-text mb-3"><strong>上映時間：</strong><%= @review.time %></div>
+      <div class="card-text mb-3"><strong>監督：</strong><%= @review.director %></div>
+      <div class="card-text mb-3"><strong>キャスト：</strong><br><%= @review.cast %></div>
     </div>
   </div>
 </div>

@@ -2,18 +2,20 @@
 
 <% if logged_in? %>
   <div class="container">
-    <h3 class="text-center mt-4 mb-5">タイムライン</h3>
+    <h4 class="text-center mt-5 mb-5">タイムライン</h4>
   </div>
   
-  <%= render "reviews/review", reviews: @reviews %>
-  
+  <div class="mb-4">
+    <%= render "reviews/review", reviews: @reviews %>
+  </div>
   
 <% else %>
   <div class="container">
-    <h3 class="text-center mt-4 mb-5">人気のレビュー</h3>
+    <h4 class="text-center mt-5 mb-5">人気のレビュー</h4>
   </div>
+    
+  <%= render "reviews/review", reviews: @reviews %>
 
-　<%= render "reviews/review", reviews: @reviews %>
 
 <% end %>
 
