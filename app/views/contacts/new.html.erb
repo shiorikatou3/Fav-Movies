@@ -1,0 +1,34 @@
+<%= render "layouts/jumbotron" %>
+
+<div class="text-center mt-5">
+  <h4>お問い合わせ</h4>
+</div>
+
+<div class="container p-4 mt-4 mb-4">
+  <div class="row">
+    <div class="col-sm-6 offset-sm-3">
+      
+      <div class="mb-5">
+        皆さまからのお問い合わせをお待ちしております。<br>
+        以下にご記入の上、入力内容のご確認をお願い致します。
+      </div>
+      
+      <%= form_with(model: @contact, url: contacts_confirm_path, local: true) do |f| %>
+        <div class="form-group">
+          <%= f.label :name, "お名前" %>&ensp;<span class="badge badge-danger">必須</span>
+          <%= f.text_field :name, class: 'form-control' %>
+        </div>
+      
+        <div class="form-group">
+          <%= f.label :message, "ご意見・ご要望" %>
+          <%= f.text_area :message, class: 'form-control', placeholder: "◯◯というジャンルを追加して欲しい、など。" %>
+        </div>
+      
+        <div>
+          <%= f.submit "入力内容を確認する" , class: "btn btn-info btn-block mt-5" %>
+        </div>
+      <% end %>
+      
+    </div>
+  </div>
+</div>

@@ -90,8 +90,8 @@
 <% if current_user == @review.user %>
 <div class="container p-0" style="width: 1000px;">
   <div class="d-flex justify-content-between mt-4 mb-4">
-    <%= link_to "レビューを編集", edit_review_path(@review), class: "btn btn-info" %>
-    <%= link_to "x削除", @review, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger' %>
+    <%= link_to "レビューを編集", edit_review_path(@review), class: "btn btn-info w-25" %>
+    <%= link_to "x削除", @review, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger w-10' %>
   </div>
 </div>
 <% end %>

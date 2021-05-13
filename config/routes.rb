@@ -23,5 +23,11 @@ Rails.application.routes.draw do
   resources :relationships, only: [:create, :destroy]
   resources :favorites, only: [:create, :destroy]
   
+  get "contact", to: "contacts#new"
+  post "contacts/confirm", to: "contacts#confirm"
+  post "contacts/back", to: "contacts#back"
+  get "contacts/thanks", to: "contacts#thanks"
   
+  resources :contacts, only: [:create]
+
 end
