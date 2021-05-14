@@ -5,3 +5,7 @@
 </div>
 
 <%= render 'reviews/review', reviews: @likes %>
+
+<div class="pagination-sm mt-5 mb-5">
+ <%= paginate @likes %>
+</div>

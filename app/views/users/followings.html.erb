@@ -5,3 +5,7 @@
 </div>
 
 <%= render 'users', users: @followings %>
+
+<div class="pagination-sm mt-5 mb-5">
+ <%= paginate @followings %>
+</div>

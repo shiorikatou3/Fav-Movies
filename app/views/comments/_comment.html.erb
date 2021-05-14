@@ -11,7 +11,7 @@
             </div>
             <div class="media-body">
               <p><%= link_to comment.user.name, user_path(comment.user) %>@<%= comment.user.favmoviesid %></br>
-              <small class="text-muted"><%= comment.updated_at.strftime("%Y-%m-%d") %></small></p>
+              <small class="text-muted"><%= comment.updated_at.strftime("%Y/%m/%d") %></small></p>
             </div>
           </div>
         </div>
