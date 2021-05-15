@@ -4,15 +4,13 @@
   <%= render "usersbar" %>
 </div>
 
-<!--
 <div class="mb-5">  
   <%= render "usergenrebar" %>
 </div>
--->
+
 
 <%= render 'reviews/review', reviews: @reviews %>
 
 <div class="pagination-sm mt-5 mb-5">
  <%= paginate @reviews %>
 </div>
-

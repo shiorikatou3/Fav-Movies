@@ -11,7 +11,9 @@ class User < ApplicationRecord
   validates :introduce, length: { maximum: 500 }
   has_secure_password
   
-  has_many :reviews
+  has_many :reviews, dependent: :destroy
+  has_many :usergenres, through: :reviews, source: :genre
+
   has_many :comments
   has_many :relationships
   has_many :followings, through: :relationships, source: :follow
@@ -52,6 +54,6 @@ class User < ApplicationRecord
   def favorite?(review)
     self.likes.include?(review)
   end
-  
+    
 
 end

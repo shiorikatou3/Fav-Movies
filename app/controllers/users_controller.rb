@@ -45,24 +45,29 @@ class UsersController < ApplicationController
   
   def followings
     @user = User.find(params[:id])
-    @followings = @user.followings.page(params[:page]).per(15)
+    @followings = @user.followings.order(id: :desc).page(params[:page]).per(15)
     counts(@user)
   end
   
   def followers
     @user = User.find(params[:id])
-    @followers = @user.followers.page(params[:page]).per(15)
+    @followers = @user.followers.order(id: :desc).page(params[:page]).per(15)
     counts(@user)
   end
   
   def likes
     @user = User.find(params[:id])
-    @likes = @user.likes.page(params[:page]).per(10)
+    @likes = @user.likes.order(id: :desc).page(params[:page]).per(10)
     counts(@user)
   end
   
+#  def genres
+#    @user = User.find(params[:user_id],params[:genre_id])
+#    @reviews = @user.reviews.order(id: :desc).page(params[:page])
+#    counts(@user)
+#  end
   
-
+  
   private
   
   def user_params
