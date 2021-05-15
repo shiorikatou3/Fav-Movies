@@ -61,11 +61,7 @@ class UsersController < ApplicationController
     counts(@user)
   end
   
-#  def genres
-#    @user = User.find(params[:user_id],params[:genre_id])
-#    @reviews = @user.reviews.order(id: :desc).page(params[:page])
-#    counts(@user)
-#  end
+
   
   
   private
