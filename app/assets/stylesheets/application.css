@@ -24,9 +24,3 @@
   color: #fff5ee !important
 }
 
-/* 画像登録ボタン */
-
-.form-image{
-          input{
-            display: none;
-          }
