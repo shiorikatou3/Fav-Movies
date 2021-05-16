@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   
   
   def index
-    @users = User.order(id: :desc).page(params[:page]).per(20)
+    @users = User.order(id: :desc).page(params[:page]).per(15)
   end
 
   def show
@@ -21,7 +21,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     
     if @user.save
-      redirect_to @user
+      redirect_to login_url
     else
       flash.now[:danger] = "登録に失敗しました。"
       render :new

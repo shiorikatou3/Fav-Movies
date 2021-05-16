@@ -1,7 +1,7 @@
-<div class="container mb-4" style="width: 1000px;">
+<div class="container mb-4 mx-auto" style="width: 1000px;">
   <div class="row">
     <% users.each do |user| %>
-    <div class="col-lg-4">
+    <div class="col-xl-4">
       <div class="card rounded-0" style="width: 300px;">
         <div class="card-body">
         
@@ -19,9 +19,10 @@
                 <% end %>
                 </small>
               </p>
-              <p><%= user.introduce.truncate(50) %></P>
+              <p><%= user.introduce.truncate(50) %></p>
             </div>
           </div>
+          
         </div>
       </div>
     </div>

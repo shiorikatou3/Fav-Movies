@@ -9,7 +9,7 @@ class Review < ApplicationRecord
   validates :caption, presence: true, length: { maximum: 50 }
   validates :genre_id, presence: true
   
-  has_many :comments
+  has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :liked, through: :favorites, source: :user
   

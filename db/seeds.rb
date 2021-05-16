@@ -43,7 +43,7 @@ character = Genre.create(name: "キャラクター")
 hero, heroine = character.children.create(
   [
     { name: "ベストヒーロー" },
-    { name: "ベストヒーロー" }
+    { name: "ベストヒロイン" }
   ]
 )
 

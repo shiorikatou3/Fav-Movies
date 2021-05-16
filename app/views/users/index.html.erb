@@ -1,9 +1,11 @@
 <%= render "layouts/jumbotron" %>
 
 <div class="container">
-  <h4 class="text-center mt-5 mb-5">登録ユーザー</h4>
+  <h3 class="text-center mt-5 mb-5">登録ユーザー</h3>
 </div>
 
 <%= render "users", users: @users %>
 
-<%= paginate @users %>
+<div class="pagination-sm mt-5 mb-5">
+ <%= paginate @users %>
+</div>
