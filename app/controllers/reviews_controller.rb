@@ -15,9 +15,16 @@ class ReviewsController < ApplicationController
   def create
     @review = current_user.reviews.build(review_params)
     @children = Genre.where.not(ancestry: nil)
-    
-    if @review.save
-      redirect_to @review
+    review_count = Review.where(genre_id: review_params[:genre_id]).where(user_id: current_user.id).count
+    if @review.valid?
+      if review_count < 3
+        flash[:success] = "※このジャンルのレビューは#{review_count + 1}件目です"
+        @review.save
+        redirect_to @review
+      else
+        flash[:danger] = "※このジャンルのレビューは#{review_count}件投稿があります"
+        redirect_to new_review_path
+      end
     else
       flash.now[:danger] = "投稿に失敗しました"
       render :new

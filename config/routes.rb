@@ -13,12 +13,14 @@ Rails.application.routes.draw do
       get :likes
     end
   end
-    
+  
+  
   resources :reviews, only: [:show, :new, :create, :edit, :update, :destroy] do
     resources :comments, only: [:create, :destroy]
-  end  
-    
+  end
+  
   resources :genres, only: [:show]
+    
   resources :relationships, only: [:create, :destroy]
   resources :favorites, only: [:create, :destroy]
   
