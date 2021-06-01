@@ -14,13 +14,15 @@
       </div>
       
       <%= form_with(model: @contact, url: contacts_confirm_path, local: true) do |f| %>
+        <%= render "layouts/error_messages", model: f.object %>
+      
         <div class="form-group">
           <%= f.label :name, "お名前" %>&ensp;<span class="badge badge-danger">必須</span>
           <%= f.text_field :name, class: 'form-control' %>
         </div>
       
         <div class="form-group">
-          <%= f.label :message, "ご意見・ご要望" %>
+          <%= f.label :message, "ご意見・ご要望" %>&ensp;<span class="badge badge-danger">必須</span>
           <%= f.text_area :message, class: 'form-control', placeholder: "◯◯というジャンルを追加して欲しい、など。" %>
         </div>
       

@@ -16,7 +16,7 @@
           </div>
         </div>
         <% if current_user == comment.user %>
-          <%= link_to "x", review_comment_path(@review, comment), method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-outline-danger h-25' %>
+          <%= link_to "x", review_comment_path(@review, comment), method: :delete, data: { confirm: "You sure?" }, class: "btn btn-outline-danger h-25" %>
         <% end %>
       </div>
       <%= comment.content %>
@@ -24,10 +24,12 @@
   <% end %>  
 </div>
 <div class="comment-form">
-  <%= form_with(model: @comment, url: review_comments_path(@review), local: true) do |f| %>
+  <%= form_with(model: [@review, @comment], method: :post, local: true) do |f| %>
+  <%= render "layouts/error_messages", model: @comment %>
     <div class="d-flex justify-content-between">
       <div style="width: 550px;">
         <%= f.text_field :content, class: "form-control", placeholder: "コメントする" %>
+        <%= f.hidden_field :review_id, value: @review.id %>
       </div>
       <%= f.submit "送信", class: "btn btn-outline-secondary" %>
     </div>

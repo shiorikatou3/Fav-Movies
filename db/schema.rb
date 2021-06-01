@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_13_134628) do
+ActiveRecord::Schema.define(version: 2021_06_01_045431) do
 
   create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
@@ -62,7 +62,6 @@ ActiveRecord::Schema.define(version: 2021_05_13_134628) do
     t.string "caption"
     t.date "date"
     t.string "cast"
-    t.string "time"
     t.string "image"
     t.bigint "user_id"
     t.bigint "genre_id"
@@ -71,6 +70,7 @@ ActiveRecord::Schema.define(version: 2021_05_13_134628) do
     t.text "content"
     t.string "country"
     t.string "director"
+    t.integer "time"
     t.index ["genre_id"], name: "index_reviews_on_genre_id"
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end

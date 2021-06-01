@@ -7,7 +7,7 @@
 </div>
 
 <%= form_with(model: @review, local: true) do |f| %>
-<%= render 'layouts/error_messages', model: f.object %>
+<%= render "layouts/error_messages", model: f.object %>
   
   <div class="d-flex justify-content-center">  
     <div class="card rounded-0" style="width: 700px;">
@@ -65,15 +65,15 @@
     <div class="card rounded-0" style="width: 300px;">
       <div class="card-body">
         <div class="form-group">
-          <%= f.label :date, "公開日", class: "control-label" %>
+          <%= f.label :date, "公開日" %>
           <%= f.date_field :date, class: "form-control" %>
         </div>
         <div class="form-group">
-          <%= f.label :country, "製作国", class: "control-label" %>
+          <%= f.label :country, "製作国" %>
           <%= f.text_field :country, class: "form-control" %>
         </div>
         <div class="form-group">
-          <%= f.label :time, "上映時間" %>
+          <%= f.label :time, "上映時間(分)" %>&ensp;<span class="badge badge-info">数字のみ</span>
           <%= f.text_field :time, class: "form-control" %>
         </div>
         <div class="form-group">

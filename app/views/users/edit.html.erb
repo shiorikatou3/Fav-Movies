@@ -7,6 +7,7 @@
     <div class="col-sm-6 offset-sm-3">
       
       <%= form_with(model: @user, local: true) do |f| %>
+       <%= render "layouts/error_messages", model: f.object %>
         <div class="card border mb-3">
           <div class="card-body">
             <div class="media">
@@ -49,9 +50,6 @@
         });
         </script>
         
-      
-        <%= render "layouts/error_messages", model: f.object %>
-        
         <div class="form-group">
           <%= f.label :name, "お名前" %>
           <%= f.text_field :name, class: "form-control" %>
@@ -89,9 +87,6 @@
           <%= f.select :age, [["",""], ["10代","10"], ["20代","20"], ["30代","30"], ["40代","40"], ["50代","50"], ["60代","60"], ["70代以上","70"] ], {},   class: "form-control" %>
         </div>
         
-        
-        
-  
         <%= f.submit "変更内容を保存する", class: "btn btn-info btn-block mt-5" %>
       <% end %>
     </div>

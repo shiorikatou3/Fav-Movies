@@ -8,6 +8,7 @@ class ContactsController < ApplicationController
   def confirm
     @contact = Contact.new(contact_params)
     if @contact.invalid?
+      flash.now[:danger] = "入力内容に誤りがあるようです。"
       render :new
     end
   end

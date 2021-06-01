@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   mount_uploader :image, ImageUploader
-  
+  before_save { self.email.downcase! }
   validates :name, presence: true, length: { maximum: 50 }
   validates :favmoviesid, presence: true, length: { maximum: 50 },
                           format: { with: /\A[a-zA-Z0-9]+\z/ },

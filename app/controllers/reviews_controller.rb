@@ -5,6 +5,8 @@ class ReviewsController < ApplicationController
   
   def show
     @review = Review.find(params[:id])
+    @comments = @review.comments
+    @comment = current_user.comments.build
   end
 
   def new
@@ -18,15 +20,15 @@ class ReviewsController < ApplicationController
     review_count = Review.where(genre_id: review_params[:genre_id]).where(user_id: current_user.id).count
     if @review.valid?
       if review_count < 3
-        flash[:success] = "※このジャンルのレビューは#{review_count + 1}件目です"
+        flash[:success] = "※このジャンルのレビューは#{review_count + 1}件目です。"
         @review.save
         redirect_to @review
       else
-        flash[:danger] = "※このジャンルのレビューは#{review_count}件投稿があります"
+        flash[:danger] = "※このジャンルのレビューは#{review_count}件投稿があります。"
         redirect_to new_review_path
       end
     else
-      flash.now[:danger] = "投稿に失敗しました"
+      flash.now[:danger] = "投稿に失敗しました。"
       render :new
     end
   end
@@ -41,7 +43,7 @@ class ReviewsController < ApplicationController
     if @review.update(review_params)
       redirect_to @review
     else
-      flash.now[:danger] = "更新出来ませんでした"
+      flash.now[:danger] = "更新出来ませんでした。"
       render :edit
     end
   end

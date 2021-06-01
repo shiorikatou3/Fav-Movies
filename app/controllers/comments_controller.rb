@@ -4,15 +4,14 @@ class CommentsController < ApplicationController
   
   
   def create
-    @review = Review.find(params[:review_id])
-    @comment = @review.comments.build(comment_params)
+    @comment = current_user.comments.build(comment_params)
     @comment.user = current_user
     
     if @comment.save
-      redirect_to @review
+      redirect_to review_url(@comment.review)
     else
-      flash.now[:danger] = "コメントに失敗しました"
-      redirect_to @review
+      flash[:danger] = "コメントに失敗しました"
+      redirect_to review_url(@comment.review)
     end
   end
 
@@ -24,7 +23,7 @@ class CommentsController < ApplicationController
   private
   
   def comment_params
-    params.permit(:content)
+    params.require(:comment).permit(:content, :review_id)
   end
   
   def correct_user
