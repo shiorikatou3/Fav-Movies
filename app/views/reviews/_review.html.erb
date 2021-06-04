@@ -1,33 +1,37 @@
-<div class="container mb-4 mx-auto" style="width: 1050px;">
+<div class="container mb-4 mx-auto">
   <div class="row">
     <% reviews.each do |review| %>
     <div class="col-xl-6">
-      <div class="card rounded-0 mb-5" style="width: 500px;">
+      <div class="card rounded-0 mb-5">
         <h6 class="card-title text-center mt-3 font-weight-bold">「<%= review.genre.name =%>」の映画</h6>
-        <div class="d-flex justify-content-center">
-          <div class="card border border-0" style="width: 300px;">
-            <div class="card-body">
-              <div class="media">
-                <div class="media-left media-top">
-                  <div class="mr-2 rounded media-object">
-                    <%= image_tag review.user.image.icon.url, size: "40x40" %>
+        <div class="row no-gutters">
+          <div class="col-sm-8">
+            <div class="card border border-0">
+              <div class="card-body">
+                <div class="media">
+                  <div class="media-left media-top">
+                    <div class="mr-2 rounded media-object">
+                      <%= image_tag review.user.image.icon.url, size: "40x40" %>
+                    </div>
+                  </div>
+                  <div class="media-body">
+                    <p><%= link_to review.user.name, user_path(review.user) %>@<%= review.user.favmoviesid %></br>
+                    <small class="text-muted"><%= review.updated_at.strftime("%Y/%m/%d") %></small></p>
                   </div>
                 </div>
-                <div class="media-body">
-                  <p><%= link_to review.user.name, user_path(review.user) %>@<%= review.user.favmoviesid %></br>
-                  <small class="text-muted"><%= review.updated_at.strftime("%Y/%m/%d") %></small></p>
-                </div>
+                <h6 class="card-text font-weight-bold"><%= link_to review.caption, review_path(review) %></h6>
+                <p class="card-text"><%= review.content.truncate(50) %></p>
               </div>
-              <h6 class="card-text font-weight-bold"><%= link_to review.caption, review_path(review) %></h6>
-              <p class="card-text"><%= review.content.truncate(50) %></p>
             </div>
           </div>
-          <div class="card border border-0" style="width: 200px;">
-            <div class="card-body">
-              <div class="card-text" style="width: 120px; height: 169px;">
-                <%= image_tag review.image.movie.url, size: "120x169" %>
+          <div class="col-sm-4">
+            <div class="card border border-0">
+              <div class="card-body">
+                <div class="card-text" style="width: 120px; height: 169px;">
+                  <%= image_tag review.image.movie.url, size: "120x169" %>
+                </div>
+                <div class="card-text font-weight-bold mt-2"><%= review.movietitle %></div>
               </div>
-              <div class="card-text font-weight-bold mt-2"><%= review.movietitle %></div>
             </div>
           </div>
         </div>

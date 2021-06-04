@@ -1,100 +1,110 @@
 <div class="container">
   <h4 class="text-center mt-5 mb-5">『<%= @review.caption %>』<%= @review.user.name %>さんのレビュー</h4>
-  <div class="container p-0" style="width: 1000px;">
+  <div class="container mx-auto">
     <h5 class="mt-4 mb-4">「<%= @review.genre.name %>」の映画</h5>
   </div>
-  
 </div>
 
-<%= form_with(model: @review, local: true) do |f| %>
+<%= form_with(model: @review, local: true) do |f| %>s
 <%= render "layouts/error_messages", model: f.object %>
-  
-  <div class="d-flex justify-content-center">  
-    <div class="card rounded-0" style="width: 700px;">
-      <div class="d-flex justify-content-center">
-        <div class="card border border-0" style="width: 500px;">
-          <div class="card-body">
-            <div class="form-group">
-              <%= f.label :movietitle, "作品タイトル" %>
-              <%= f.text_field :movietitle, class: "form-control" %>
+
+  <div class="container mx-auto">
+    <div class="card rounded-0">
+      <div class="row no-gutters">
+        <div class="col-xl-8">
+          <div class="card rounded-0 border border-0">
+            <div class="row no-gutters">
+              <div class="col-sm-8">
+                <div class="card border border-0">
+                  <div class="card-body">
+                    <div class="form-group">
+                      <%= f.label :movietitle, "作品タイトル" %>
+                      <%= f.text_field :movietitle, class: "form-control" %>
+                    </div>
+                    <div class="form-group">
+                      <%= f.label :caption, "レビュータイトル" %>
+                      <%= f.text_field :caption, class: "form-control" %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="card border border-0">
+                  <div class="card-body">
+                    <div class="card-text" style="width: 149px; height: 210px;">
+                      <% unless @review.image %>
+                        <%= image_tag @review.image.movie.url, size: "149x210" %>
+                      <% else %>
+                        <%= image_tag @review.image.movie.url, size: "149x210", id: :img_prev %>
+                      <% end %>
+                    </div>
+                    <div class="card-text"><%= f.file_field :image, id: :review_img %></div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="form-group">
-              <%= f.label :caption, "レビュータイトル" %>
-              <%= f.text_field :caption, class: "form-control" %>
+              
+            <script type="text/javascript">
+            $(function() {
+             function readURL(input) {
+               if (input.files && input.files[0]) {
+                 var reader = new FileReader();
+                 reader.onload = function (e) {
+                   $('#img_prev').attr('src', e.target.result);
+                 }
+                 reader.readAsDataURL(input.files[0]);
+               }
+             }
+             $("#review_img").change(function(){
+               readURL(this);
+             });
+            });
+            </script>
+            
+            <div class="card-body">
+              <div class="form-group">
+                <%= f.label :content, "レビュー内容" %>
+                <%= f.text_area :content, :size=>"300×300", class: "form-control" %>
+              </div>
             </div>
           </div>
         </div>
-        <div class="card border border-0" style="width: 200px;">
-          <div class="card-body">
-            <div class="card-text" style="width: 149px; height: 210px;">
-              <% unless @review.image %>
-                <%= image_tag @review.image.movie.url, size: "149x210" %>
-              <% else %>
-                <%= image_tag @review.image.movie.url, size: "149x210", id: :img_prev %>
-              <% end %>
+        <div class="col-xl-4">
+          <div class="card rounded-0 border-top-0 border-right-0 border-bottom-0">
+            <div class="card-body">
+              <div class="form-group">
+                <%= f.label :date, "公開日" %>
+                <%= f.date_field :date, class: "form-control" %>
+              </div>
+              <div class="form-group">
+                <%= f.label :country, "製作国" %>
+                <%= f.text_field :country, class: "form-control" %>
+              </div>
+              <div class="form-group">
+                <%= f.label :time, "上映時間(分)" %>&ensp;<span class="badge badge-info">数字のみ</span>
+                <%= f.text_field :time, class: "form-control" %>
+              </div>
+              <div class="form-group">
+                <%= f.label :director, "監督" %>
+                <%= f.text_field :director, class: "form-control" %>
+              </div>
+              <div class="form-group">
+                <%= f.label :cast, "キャスト" %>
+                <%= f.text_area :cast, :size=>"300×50", class: "form-control" %>
+              </div>
             </div>
-            <div class="card-text"><%= f.file_field :image, id: :review_img %></div>
           </div>
-        </div>
-      </div>
-      
-      <script type="text/javascript">
-      $(function() {
-       function readURL(input) {
-         if (input.files && input.files[0]) {
-           var reader = new FileReader();
-           reader.onload = function (e) {
-             $('#img_prev').attr('src', e.target.result);
-           }
-           reader.readAsDataURL(input.files[0]);
-         }
-       }
-       $("#review_img").change(function(){
-         readURL(this);
-       });
-      });
-      </script>
-      
-      <div class="card-body">
-        <div class="form-group">
-          <%= f.label :content, "レビュー内容" %>
-          <%= f.text_area :content, :size=>"300×300", class: "form-control" %>
-        </div>
-      </div>
-    </div>
-    <div class="card rounded-0" style="width: 300px;">
-      <div class="card-body">
-        <div class="form-group">
-          <%= f.label :date, "公開日" %>
-          <%= f.date_field :date, class: "form-control" %>
-        </div>
-        <div class="form-group">
-          <%= f.label :country, "製作国" %>
-          <%= f.text_field :country, class: "form-control" %>
-        </div>
-        <div class="form-group">
-          <%= f.label :time, "上映時間(分)" %>&ensp;<span class="badge badge-info">数字のみ</span>
-          <%= f.text_field :time, class: "form-control" %>
-        </div>
-        <div class="form-group">
-          <%= f.label :director, "監督" %>
-          <%= f.text_field :director, class: "form-control" %>
-        </div>
-        <div class="form-group">
-          <%= f.label :cast, "キャスト" %>
-          <%= f.text_area :cast, :size=>"300×50", class: "form-control" %>
         </div>
       </div>
     </div>
   </div>
-  
-  <div class="container p-0" style="width: 1000px;">
+    
+  <div class="container mx-auto">
     <div class="d-flex justify-content-between mt-4 mb-4">
       <%= link_to "戻る", review_path(@review), class: "btn btn-info w-25" %>
       <%= f.submit "更新", class: "btn btn-info w-25" %>
     </div>
   </div>
-    
- 
+  
 <% end %>
 
