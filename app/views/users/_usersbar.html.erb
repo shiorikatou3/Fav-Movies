@@ -1,11 +1,7 @@
 <div class="mb-4 border-bottom border-top">
-  <nav class="navbar navbar-expand-sm navbar-light" style="background-color:#fff5ee;">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    
-    <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
-      <ul class="navbar-nav justify-content-between" style="width: 400px;"">
+  <nav class="navbar navbar-expand navbar-light" style="background-color:#fff5ee;">
+    <div class="mx-auto">
+      <ul class="navbar-nav d-flex justify-content-between" style="width: 360px;">
         <li class="nav-item text-center"><a href="<%= user_path(@user) %>" class="nav-link">投稿 <br><span class="badge"><%= @count_reviews %></span></a></li>
         <li class="nav-item text-center"><a href="<%= likes_user_path(@user) %>" class="nav-link">♡いいね <br><span class="badge"><%= @count_likes %></span></a></li>
         <li class="nav-item text-center"><a href="<%= followings_user_path(@user) %>" class="nav-link">フォロー <br><span class="badge"><%= @count_followings %></span></a></li>

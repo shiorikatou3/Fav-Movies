@@ -5,9 +5,9 @@
     </button>
     
     <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
-      <ul class="navbar-nav justify-content-between" style="width: 800px;">
+      <ul class="navbar-nav">
         <% @parents.each do |parent| %>
-          <li class="nav-item dropdown">
+          <li class="nav-item mx-4 dropdown">
             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><%= parent.name %></a>
             <ul class="dropdown-menu dropdown-menu-right">
               <% parent.children.each do |child| %>
