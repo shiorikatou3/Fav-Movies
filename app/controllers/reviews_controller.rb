@@ -6,7 +6,9 @@ class ReviewsController < ApplicationController
   def show
     @review = Review.find(params[:id])
     @comments = @review.comments
-    @comment = current_user.comments.build
+    if logged_in?
+      @comment = current_user.comments.build
+    end
   end
 
   def new
