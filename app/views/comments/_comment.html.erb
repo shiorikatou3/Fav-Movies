@@ -19,7 +19,7 @@
           <%= link_to "x", review_comment_path(@review, comment), method: :delete, data: { confirm: "You sure?" }, class: "btn btn-outline-danger h-25" %>
         <% end %>
       </div>
-      <%= comment.content %>
+      <div style="font-size: 90%;"><%= comment.content %></div>
     </div>
   <% end %>  
 </div>
