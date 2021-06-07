@@ -25,7 +25,7 @@
                     </div>
                   </div>
                   <h6 class="card-text font-weight-bold mb-3"><%= @review.caption %></h6>
-                  <p class="card-text" style="font-size: 90%;"><%= @review.content %></p>
+                  <p class="card-text" style="font-size: 90%;"><%=safe_join(@review.content.split("\n"),tag(:br))%></P>
                 </div>
               </div>
             </div>
