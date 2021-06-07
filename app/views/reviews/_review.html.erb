@@ -38,11 +38,11 @@
         <ul class="list-group list-group-flush">
           <li class="list-group-item small d-flex justify-content-left">
             <% if logged_in? %>
-              <%= render "favorites/favorite_button", review: review %>
+              <%= render "favorites/favorite_button", review: review %>&ensp;
               <%= link_to "コメント#{review.comments.count}", review_path(review), class: "btn btn-outline-secondary btn-sm" %>
             <% else %>
-              <%= link_to "♡いいね!#{review.liked.count}", login_path, class: "btn btn-outline-secondary btn-sm" %>
-              <%= link_to "コメント#{review.comments.count}", login_path, class: "btn btn-outline-secondary btn-sm" %>
+              <%= link_to "♡いいね! #{review.liked.count}", login_path, class: "btn btn-outline-secondary btn-sm" %>&ensp;
+              <%= link_to "コメント #{review.comments.count}", login_path, class: "btn btn-outline-secondary btn-sm" %>
             <% end %>
           </li>
         </ul>

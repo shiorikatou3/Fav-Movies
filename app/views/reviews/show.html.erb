@@ -45,7 +45,7 @@
               <% if logged_in? %>
                 <%= render "favorites/favorite_button", review: @review %>
               <% else %>
-                <%= link_to "♡いいね!#{@review.liked.count}", login_path, class: "btn btn-outline-secondary btn-sm" %>
+                <%= link_to "♡いいね! #{@review.liked.count}", login_path, class: "btn btn-outline-secondary btn-sm" %>
               <% end %>
             </li>
             <li class="list-group-item small">コメント&ensp;<%= @review.comments.count %></li>
