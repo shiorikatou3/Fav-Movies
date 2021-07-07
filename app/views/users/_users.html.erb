@@ -18,10 +18,7 @@
                 <% end %>
                 </small>
               </p>
-              <p style="font-size: 90%;"><%= user.introduce %></p>
-              
-              <!--heroku表示できず <p style="font-size: 90%;"><%= safe_join(user.introduce.truncate(50).split("\n"),tag(:br)) %></p> -->
-              
+              <p style="font-size: 90%;"><%= safe_join(user.introduce.truncate(80).split("\n"),tag(:br)) %></p>
             </div>
           </div>
         </div>
