@@ -64,4 +64,6 @@ end
 
 gem 'rmagick'
 
-gem "dotenv-rails"
+gem 'dotenv-rails'
+
+gem 'seed-fu'

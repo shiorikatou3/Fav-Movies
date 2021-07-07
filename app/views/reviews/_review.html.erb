@@ -20,7 +20,12 @@
                   </div>
                 </div>
                 <h6 class="card-text font-weight-bold"><%= link_to review.caption, review_path(review) %></h6>
-                <p class="card-text" style="font-size: 90%;"><%=safe_join(review.content.truncate(80).split("\n"),tag(:br))%></p>
+                <p class="card-text" style="font-size: 90%;">
+                  <%=safe_join(review.content.truncate(80).split("\n"),tag(:br))%>
+                  <% if review.content.size >= 80 %>
+                    <%= link_to "続きを読む", review_path(review) %>
+                  <% end %>
+                </p>
               </div>
             </div>
           </div>
